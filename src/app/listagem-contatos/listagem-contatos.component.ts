@@ -17,7 +17,10 @@ export class ListagemContatosComponent implements OnInit {
 
   listar(){
     this.contatoService.listarContatos()
-      .subscribe(dados => this.contatos = dados);
+      .subscribe(contatos => {
+        this.contatos = contatos;
+        console.log(contatos);
+      });
   }
 
 }

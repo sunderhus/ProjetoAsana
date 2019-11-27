@@ -7,8 +7,6 @@
         <th>Prop 2</th>
         <th>Prop 3</th>
         <th>Prop 4</th>
-        <th>Prop 5</th>
-        <th>Prop 6</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
@@ -16,14 +14,12 @@
     <tbody>
         <tr *ngFor="let contato of contatos">
           <td >{{contato.id}}</td>
-          <td >{{contato.name}}</td>
+          <td >{{contato.cnpj}}</td>
+          <td >{{contato.razaoSocial}}</td>
           <td >{{contato.email}}</td>
-          <td >{{contato.phone}}</td>
-          <td >{{contato.company.name}}</td>
-          <td >{{contato.id}}</td>
-          <td >{{contato.name}}</td>
-          <td >{{contato.email}}</td>
-          <td >{{contato.phone}}</td>
+          <td >{{contato.telefone}}</td>
+          <td >Editar</td>
+          <td >Excluir</td>
         </tr>
       </tbody>
   </table>
