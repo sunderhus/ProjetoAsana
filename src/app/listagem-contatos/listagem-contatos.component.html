@@ -1,12 +1,13 @@
+
 <div class="col-md-12">
   <table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Prop 1</th>
-        <th>Prop 2</th>
-        <th>Prop 3</th>
-        <th>Prop 4</th>
+        <th>CNPJ</th>
+        <th>Email</th>
+        <th>Razão Social</th>
+        <th>telefone</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
@@ -15,11 +16,11 @@
         <tr *ngFor="let contato of contatos">
           <td >{{contato.id}}</td>
           <td >{{contato.cnpj}}</td>
-          <td >{{contato.razaoSocial}}</td>
           <td >{{contato.email}}</td>
+          <td >{{contato.razaoSocial}}</td>
           <td >{{contato.telefone}}</td>
-          <td >Editar</td>
-          <td >Excluir</td>
+          <td (click)="editar(contato)">Editar</td>
+          <td (click)="remover(contato.id)">Remover</td>
         </tr>
       </tbody>
   </table>
