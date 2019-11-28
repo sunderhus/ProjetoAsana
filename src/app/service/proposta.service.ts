@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PropostaService {
-  propostasUri: string = "//gerenciador-propostas-api-igor.herokuapp.com";
+  propostasUri: string = "//gerenciador-propostas-api.herokuapp.com";
   private readonly _http: HttpClient;
   constructor(http: HttpClient) {
     this._http = http;

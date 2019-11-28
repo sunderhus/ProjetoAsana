@@ -6,7 +6,7 @@ import { identifierModuleUrl } from '@angular/compiler';
   providedIn: 'root'
 })
 export class ContatoService {
-  private contatoUri:string = "http://gerenciador-proposta-api.herokuapp.com";
+  private contatoUri:string = "//gerenciador-proposta-api.herokuapp.com";
   private readonly _http: HttpClient;
 
   constructor(http: HttpClient) {
