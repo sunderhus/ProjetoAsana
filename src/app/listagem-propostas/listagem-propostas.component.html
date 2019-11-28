@@ -3,10 +3,9 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID Cliente</th>
+        <th>ID</th>
         <th>Razão Social</th>
         <th>CNPJ</th>
-        <th>ID Proposta</th>
         <th>Status</th>
         <th>Data</th>
         <th>Valor</th>
@@ -15,10 +14,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let proposta of propostas">
-        <td>{{proposta.cliente.id}}</td>
+        <td>{{proposta.id}}</td>
         <td>{{proposta.cliente.razaoSocial}}</td>
         <td>{{proposta.cliente.cnpj}}</td>
-        <td>{{proposta.id}}</td>
         <td>{{proposta.status}}</td>
         <td>{{proposta.data}}</td>
         <td>{{proposta.valor}}</td>
