@@ -5,14 +5,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PropostaService {
-  propostas: Array<any>;
-  propostasUri: string = "//jsonplaceholder.typicode.com/posts/1/comments";
+  propostasUri: string = "//gerenciador-propostas-api-igor.herokuapp.com";
   private readonly _http: HttpClient;
   constructor(http: HttpClient) {
     this._http = http;
   }
 
   listarPropostas(){
-    return this._http.get<any[]>(`${this.propostasUri}`);
+    return this._http.get<any[]>(`${this.propostasUri}/clientes/propostas`);
   }
 }

@@ -1,26 +1,26 @@
-<div class="col-md-12">
+<div class="table-responsive">
+
   <table class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Prop 1</th>
-        <th>Prop 2</th>
-        <th>Prop 3</th>
-        <th>Prop 4</th>
-        <th>Editar</th>
-        <th>Excluir</th>
+        <th>CNPJ</th>
+        <th>Razão Social</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let contato of contatos">
-          <td >{{contato.id}}</td>
-          <td >{{contato.cnpj}}</td>
-          <td >{{contato.razaoSocial}}</td>
-          <td >{{contato.email}}</td>
-          <td >{{contato.telefone}}</td>
-          <td >Editar</td>
-          <td >Excluir</td>
-        </tr>
-      </tbody>
+      <tr *ngFor="let contato of contatos">
+        <td>{{contato.id}}</td>
+        <td>{{contato.cnpj}}</td>
+        <td>{{contato.razaoSocial}}</td>
+        <td>{{contato.email}}</td>
+        <td>{{contato.telefone}}</td>
+        <td>Editar | Excluir</td>
+      </tr>
+    </tbody>
   </table>
+
 </div>
