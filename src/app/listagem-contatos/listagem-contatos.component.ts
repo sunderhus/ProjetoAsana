@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListagemContatosComponent implements OnInit {
   contatos: Array<any>;
+  isEdit: boolean;
 
   constructor(private contatoService: ContatoService) { }
 
@@ -17,10 +18,32 @@ export class ListagemContatosComponent implements OnInit {
 
   listar(){
     this.contatoService.listarContatos()
-      .subscribe(contatos => {
-        this.contatos = contatos;
-        console.log(contatos);
+      .subscribe(dados => {
+        this.contatos = dados;
+        console.log(dados);
       });
+   
+  }
+
+  editar(contato: any){
+    this.contatoService.editarContato(contato, contato.id)
+    .subscribe( dados => {
+      console.log(dados);
+    });
+  }
+
+  remover(id: number){
+    this.contatoService.removerContato(id)
+    .subscribe(dados => {
+        console.log(dados);
+    });
+  }
+  
+  adicionar(contato:any){
+    this.contatoService.adicionarContato(contato)
+    .subscribe(dados => {
+      console.log(dados);
+    });
   }
 
 }

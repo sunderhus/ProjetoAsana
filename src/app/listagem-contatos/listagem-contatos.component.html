@@ -5,20 +5,22 @@
       <tr>
         <th>ID</th>
         <th>CNPJ</th>
+        <th>Email</th>
         <th>Razão Social</th>
-        <th>E-mail</th>
-        <th>Telefone</th>
-        <th>Ações</th>
+        <th>telefone</th>
+        <th>Editar</th>
+        <th>Excluir</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let contato of contatos">
         <td>{{contato.id}}</td>
         <td>{{contato.cnpj}}</td>
-        <td>{{contato.razaoSocial}}</td>
         <td>{{contato.email}}</td>
+        <td>{{contato.razaoSocial}}</td>
         <td>{{contato.telefone}}</td>
-        <td>Editar | Excluir</td>
+        <td (click)="editar(contato)">Editar</td>
+        <td (click)="remover(contato.id)">Remover</td>
       </tr>
     </tbody>
   </table>
