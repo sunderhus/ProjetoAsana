@@ -1,29 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Contato } from '../model/contato.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContatoService {
-  private contatoUri:string = "//localhost:8080";
-  private readonly _http: HttpClient;
 
-  constructor(http: HttpClient) {
-    this._http = http;
+  constructor(private http: HttpClient) {
   }
 
   listarContatos(){
-    return this._http.get<any[]>(`${this.contatoUri}/clientes`);
+    return this.http.get<Contato[]>(`${environment.baseUrl}/clientes`);
   }
+
   removerContato(id: number){
-    console.log(id);
-    return this._http.delete(`${this.contatoUri}/clientes/${id}`);
+    return this.http.delete(`${environment.baseUrl}/clientes/${id}`);
   }
+
   editarContato(contato: Contato, id: number){
-    return this._http.put(`${this.contatoUri}/clientes/${id}`,contato);
+    return this.http.put<Contato>(`${environment.baseUrl}/clientes/${id}`, contato);
   }
+
   adicionarContato(contato: Contato){
-    return this._http.post(`${this.contatoUri}/clientes/`,contato);
+    return this.http.post<Contato>(`${environment.baseUrl}/clientes/`, contato);
   }
 }
