@@ -21,8 +21,8 @@ import { FormsModule }   from '@angular/forms';
     NavbarComponent
   ],
   imports: [
-    FormsModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
