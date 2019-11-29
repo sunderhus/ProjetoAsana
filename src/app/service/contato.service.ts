@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { identifierModuleUrl } from '@angular/compiler';
+import { Contato } from '../model/contato.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContatoService {
-  private contatoUri:string = "//gerenciador-proposta-api.herokuapp.com";
+  private contatoUri:string = "//localhost:8080";
   private readonly _http: HttpClient;
 
   constructor(http: HttpClient) {
@@ -26,11 +26,4 @@ export class ContatoService {
   adicionarContato(contato: Contato){
     return this._http.post(`${this.contatoUri}/clientes/`,contato);
   }
-}
-
-interface Contato {
-  cnpj: string,
-  email: string,
-  razaoSocial: string,
-  telefone: number,
 }

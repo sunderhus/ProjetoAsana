@@ -1,4 +1,5 @@
-<div class="table-responsive">
+<div class="table-responsive" *ngIf="carregado">
+  <button class="btn btn-primary mx-2 my-2" (click)="adicionar()">Adicionar</button>
 
   <table class="table table-striped">
     <thead>
@@ -20,9 +21,16 @@
         <td>{{proposta.status}}</td>
         <td>{{proposta.data}}</td>
         <td>{{proposta.valor}}</td>
-        <td>Editar | Excluir</td>
+        <td>
+          <button class="btn btn-primary mx-1" (click)="editar(proposta)">Editar</button>
+          <button class="btn btn-danger mx-1" (click)="remover(proposta.id)">Remover</button>
+        </td>
       </tr>
     </tbody>
   </table>
 
+</div>
+
+<div *ngIf="!carregado">
+  Carregando...
 </div>

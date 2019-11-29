@@ -9,15 +9,19 @@ import { ListagemContatosComponent } from './listagem-contatos/listagem-contatos
 import { NavbarComponent } from './navbar/navbar.component';
 import { PropostaService } from './service/proposta.service';
 import { ContatoService } from './service/contato.service';
+import { ManutencaoPropostas } from './manutencao-propostas/manutencao-propostas.component';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListagemPropostasComponent,
     ListagemContatosComponent,
+    ManutencaoPropostas,
     NavbarComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
