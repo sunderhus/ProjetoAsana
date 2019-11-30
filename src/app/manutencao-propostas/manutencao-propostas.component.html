@@ -1,0 +1,38 @@
+<div *ngIf="carregado">
+  <h1>Proposta</h1>
+  <form>
+
+    <div class="form-group">
+      <label>ID:</label>
+      <input class="form-control" type="text" disabled [(value)]="proposta.id">
+    </div>
+    <div class="form-group">
+      <label>Descrição:</label>
+      <input class="form-control" type="text" id="descricao" name="descricao" [(ngModel)]="proposta.descricao">
+    </div>
+    <div class="form-group">
+      <label>Data da oferta inicial:</label>
+      <input class="form-control" type="text" id="data" name="data" [(ngModel)]="proposta.data">
+    </div>
+    <div class="form-group">
+      <label>Valor:</label>
+      <input class="form-control" type="text" id="valor" name="valor" [(ngModel)]="proposta.valor">
+    </div>
+    <div class="form-group">
+      <label>Status:</label>
+      <select class="form-control" id="status" name="status" [(ngModel)]="proposta.status">
+        <option *ngFor="let status of listaStatus" [value]="status.valor">{{status.label}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Cliente:</label>
+      <select class="form-control" id="cliente" name="cliente"
+        [(ngModel)]="proposta.cliente.id">
+        <option [value]="null">Selecione</option>
+        <option *ngFor="let c of listaClientes" [value]="c.id">{{c.razaoSocial}}</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" (click)="salvar(proposta)">Salvar</button>
+    <button class="btn btn-secondary mx-1" (click)="voltar()">Voltar</button>
+  </form>
+</div>

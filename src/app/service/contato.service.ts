@@ -1,36 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { identifierModuleUrl } from '@angular/compiler';
+import { Contato } from '../model/contato.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContatoService {
-  private contatoUri:string = "http://gerenciador-proposta-api.herokuapp.com";
-  private readonly _http: HttpClient;
-  
-  constructor(http: HttpClient) {
-    this._http = http;
+
+  constructor(private http: HttpClient) {
   }
 
   listarContatos(){
-    return this._http.get<any[]>(`${this.contatoUri}/clientes`);
+    return this.http.get<Contato[]>(`${environment.baseUrl}/clientes`);
   }
-  removerContato(id: number){
-    console.log(id);
-    return this._http.delete(`${this.contatoUri}/clientes/${id}`);
-  }
-  editarContato(contato: Contato, id: number){
-    return this._http.put(`${this.contatoUri}/clientes/${id}`,contato);
-  }
-  adicionarContato(contato: Contato){
-    return this._http.post(`${this.contatoUri}/clientes/`,contato);
-  }
-}
 
-interface Contato {
-  cnpj: string,
-  email: string,
-  razaoSocial: string,
-  telefone: number,
+  removerContato(id: number){
+    return this.http.delete(`${environment.baseUrl}/clientes/${id}`);
+  }
+
+  editarContato(contato: Contato, id: number){
+    return this.http.put<Contato>(`${environment.baseUrl}/clientes/${id}`, contato);
+  }
+
+  adicionarContato(contato: Contato){
+    return this.http.post<Contato>(`${environment.baseUrl}/clientes/`, contato);
+  }
 }

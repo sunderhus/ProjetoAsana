@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: '//gerenciador-proposta-api.herokuapp.com'
 };
