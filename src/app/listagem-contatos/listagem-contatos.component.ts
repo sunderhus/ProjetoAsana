@@ -1,5 +1,6 @@
 import { ContatoService } from './../service/contato.service';
 import { Component, OnInit } from '@angular/core';
+import { Contato } from '../model/contato.model';
 
 @Component({
   selector: 'app-listagem-contatos',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listagem-contatos.component.scss']
 })
 export class ListagemContatosComponent implements OnInit {
-  contatos: Array<any>;
-  isEdit: boolean;
+  contatos: Array<Contato>;
+  isEdit: boolean = false;
 
   constructor(private contatoService: ContatoService) { }
 
@@ -16,30 +17,29 @@ export class ListagemContatosComponent implements OnInit {
     this.listar();
   }
 
-  listar(){
+  listar() {
     this.contatoService.listarContatos()
       .subscribe(dados => {
         this.contatos = dados;
         console.log(dados);
       });
-   
   }
 
-  editar(contato: any){
+  editar(contato: Contato) {
     this.contatoService.editarContato(contato, contato.id)
     .subscribe( dados => {
       console.log(dados);
     });
   }
 
-  remover(id: number){
+  remover(id: number) {
     this.contatoService.removerContato(id)
     .subscribe(dados => {
         console.log(dados);
     });
   }
-  
-  adicionar(contato:any){
+
+  adicionar(contato: Contato) {
     this.contatoService.adicionarContato(contato)
     .subscribe(dados => {
       console.log(dados);

@@ -2,12 +2,25 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { PropostaService } from '../service/proposta.service';
-import { Proposta } from '../model/proposta.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
-import { ContatoService } from '../service/contato.service';
-import { Contato } from '../model/contato.model';
+import {
+  PropostaService
+} from '../service/proposta.service';
+import {
+  Proposta
+} from '../model/proposta.model';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
+import {
+  forkJoin
+} from 'rxjs';
+import {
+  ContatoService
+} from '../service/contato.service';
+import {
+  Contato
+} from '../model/contato.model';
 
 @Component({
   selector: 'app-manutencao-propostas',
@@ -16,11 +29,11 @@ import { Contato } from '../model/contato.model';
 })
 export class ManutencaoPropostas implements OnInit {
   id: string;
+  titulo: string = 'Editar';
   proposta: Proposta = new Proposta();
   carregado: boolean = false;
   listaClientes: Contato[];
-  listaStatus = [
-    {
+  listaStatus = [{
       "label": "Selecione",
       "valor": null,
     },
@@ -43,12 +56,10 @@ export class ManutencaoPropostas implements OnInit {
     private router: Router,
     private propostaService: PropostaService,
     private clienteService: ContatoService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-
       this.id = params.get('id') || null;
       if (this.id === null) {
         forkJoin(
@@ -56,7 +67,8 @@ export class ManutencaoPropostas implements OnInit {
         ).subscribe(resultado => {
           this.listaClientes = resultado[0];
           this.carregado = true;
-        })
+          this.titulo = 'Adicionar';
+        });
         return;
       }
 
@@ -67,6 +79,7 @@ export class ManutencaoPropostas implements OnInit {
         this.proposta = resultado[0];
         this.listaClientes = resultado[1];
         this.carregado = true;
+        this.titulo = 'Editar';
       })
     });
   }
@@ -87,12 +100,12 @@ export class ManutencaoPropostas implements OnInit {
       retorno = this.propostaService.adicionar(this.proposta);
     }
     retorno.subscribe(resultado => {
-      this.proposta = resultado;
-      alert('Proposta salva.');
-    },
+        this.proposta = resultado;
+        alert('Proposta salva.');
+      },
       errorResponse => {
         console.log(errorResponse);
         alert('Falha ao salvar a proposta.');
-      })
+      });
   }
 }

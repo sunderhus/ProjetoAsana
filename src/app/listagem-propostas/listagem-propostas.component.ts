@@ -1,10 +1,8 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { PropostaService } from './../service/proposta.service';
 import { Proposta } from '../model/proposta.model';
 import { Router } from '@angular/router';
+import { Contato } from '../model/contato.model';
 
 @Component({
   selector: 'app-listagem-propostas',
@@ -22,34 +20,29 @@ export class ListagemPropostasComponent implements OnInit {
     this.listar();
   }
 
-  remover(id: number){
-    if (!confirm("Realmente deseja apagar a proposta?")) {
+  remover(id: number) {
+    if (!confirm(`Deseja apagar a proposta (${id}) ? `)) {
       return;
     }
     this.propostaService.remover(id)
     .subscribe(dados => {
         this.listar();
+        this.carregado = !this.carregado;
     });
   }
 
-  editar(proposta: Proposta){
+  editar(proposta: Proposta) {
     this.router.navigateByUrl(`/propostas/detalhes/${proposta.id}`);
   }
 
-  adicionar(){
+  adicionar() {
     this.router.navigateByUrl(`/propostas/adicionar`);
   }
 
-  listar(){
-    this.carregado = false;
+  listar() {
     this.propostaService.listar().subscribe(dados => {
-      this.propostas = dados
-      this.carregado = true;
+      this.propostas = dados;
+      this.carregado = !this.carregado;
     });
   }
-
-  // listarPorCliente(idCliente: number) {
-  //   return this.propostaService.listarPorCliente(idCliente);
-  // }
-
 }
