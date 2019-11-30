@@ -1,40 +1,31 @@
 <div *ngIf="carregado">
-    <h1>{{titulo}} - Proposta</h1>
+    <h1>{{titulo}} - Cliente</h1>
     <form>
-        <div *ngIf="proposta.id !== null">
-        <h4>ID : {{proposta.id}}</h4>
+        <div *ngIf="contato.id !== null">
+        <h4>ID : {{contato.id}}</h4>
         </div>
         
         <div class="form-group">
-        <input class="form-control" type="hidden" [(value)]="proposta.id">
+        <input class="form-control" type="hidden" [(value)]="contato.id">
         </div>
         <div class="form-group">
-        <label>Descrição:</label>
-        <input class="form-control" type="text" id="descricao" name="descricao" [(ngModel)]="proposta.descricao">
+        <label>CNPJ:</label>
+        <input class="form-control" type="text" id="cnpj" name="cnpj" [(ngModel)]="contato.cnpj">
         </div>
         <div class="form-group">
-        <label>Data da oferta inicial:</label>
-        <input class="form-control" type="date" id="data" name="data" [(ngModel)]="proposta.data">
+        <label>E-mail:</label>
+        <input class="form-control" type="email" id="email" name="email" [(ngModel)]="contato.email">
         </div>
         <div class="form-group">
-        <label>Valor:</label>
-        <input class="form-control" type="text" id="valor" name="valor" [(ngModel)]="proposta.valor">
+        <label>Razão Social:</label>
+        <input class="form-control" type="text" id="razaoSocial" name="razaoSocial" [(ngModel)]="contato.razaoSocial">
         </div>
         <div class="form-group">
-        <label>Status:</label>
-        <select class="form-control" id="status" name="status" [(ngModel)]="proposta.status" *ngFor="let status of listaStatus">
-            <option [value]="status.valor">{{ status.label }}</option>
-        </select>
+            <label for="telefone">Telefone</label>
+            <input class="form-control" type="text" name="telefone" id="telefone" [(ngModel)]="contato.telefone" >
         </div>
-        <div class="form-group">
-        <label>Cliente:</label>
-        <select class="form-control" id="cliente" name="cliente"
-            [(ngModel)]="proposta.cliente.id">
-            <option [value]="null">Selecione</option>
-            <option *ngFor="let cliente of listaClientes" [value]="cliente.id">{{cliente.razaoSocial}}</option>
-        </select>
-        </div>
-        <button class="btn btn-primary" (click)="salvar(proposta)">Salvar</button>
+
+        <button class="btn btn-primary" (click)="salvar(contato)">Salvar</button>
         <button class="btn btn-secondary mx-1" (click)="voltar()">Voltar</button>
     </form>
 </div>

@@ -1,5 +1,8 @@
-<div class="table-responsive">
+<h2>Cadastros</h2>
+<div class="table-responsive" *ngIf="carregado">
 
+  <button class="btn btn-primary mx-2 my-2" (click)="adicionar()">Adicionar</button>
+  
   <table class="table table-striped">
     <thead>
       <tr>
@@ -8,8 +11,7 @@
         <th>Email</th>
         <th>Razão Social</th>
         <th>Telefone</th>
-        <th>Editar</th>
-        <th>Excluir</th>
+        <th colspan="2">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -19,10 +21,15 @@
         <td>{{contato.email}}</td>
         <td>{{contato.razaoSocial}}</td>
         <td>{{contato.telefone}}</td>
-        <td (click)="editar(contato)">Editar</td>
-        <td (click)="remover(contato.id)">Remover</td>
+        <td>
+          <button class="btn btn-primary mx-1 my-1" (click)="editar(contato)">Editar</button>
+          <button class="btn btn-danger mx-1 my-1" (click)="remover(contato.id)">Remover</button>
+        </td>
       </tr>
     </tbody>
   </table>
-
 </div>
+<div *ngIf="!carregado">
+    Carregando Contatos...
+</div>
+  

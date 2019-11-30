@@ -59,29 +59,30 @@ export class ManutencaoPropostas implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.id = params.get('id') || null;
-      if (this.id === null) {
+    this.route.paramMap
+      .subscribe(params => {
+        this.id = params.get('id') || null;
+        if (this.id === null) {
+          forkJoin(
+            this.clienteService.listarContatos()
+          ).subscribe(resultado => {
+            this.listaClientes = resultado[0];
+            this.carregado = true;
+            this.titulo = 'Adicionar';
+          });
+          return;
+        }
+
         forkJoin(
+          this.retornar(Number.parseInt(this.id)),
           this.clienteService.listarContatos(),
         ).subscribe(resultado => {
-          this.listaClientes = resultado[0];
+          this.proposta = resultado[0];
+          this.listaClientes = resultado[1];
           this.carregado = true;
-          this.titulo = 'Adicionar';
+          this.titulo = 'Editar';
         });
-        return;
-      }
-
-      forkJoin(
-        this.retornar(Number.parseInt(this.id)),
-        this.clienteService.listarContatos(),
-      ).subscribe(resultado => {
-        this.proposta = resultado[0];
-        this.listaClientes = resultado[1];
-        this.carregado = true;
-        this.titulo = 'Editar';
-      })
-    });
+      });
   }
 
   voltar() {
@@ -93,7 +94,7 @@ export class ManutencaoPropostas implements OnInit {
   }
 
   salvar(proposta: Proposta) {
-    let retorno;
+    let retorno: any;
     if (this.id) {
       retorno = this.propostaService.editar(this.proposta.id, this.proposta);
     } else {

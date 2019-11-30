@@ -1,5 +1,6 @@
-import { ContatoService } from './../service/contato.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ContatoService } from './../service/contato.service';
 import { Contato } from '../model/contato.model';
 
 @Component({
@@ -10,8 +11,9 @@ import { Contato } from '../model/contato.model';
 export class ListagemContatosComponent implements OnInit {
   contatos: Array<Contato>;
   isEdit: boolean = false;
+  carregado: boolean = false;
 
-  constructor(private contatoService: ContatoService) { }
+  constructor(private contatoService: ContatoService, private router: Router) { }
 
   ngOnInit() {
     this.listar();
@@ -21,29 +23,32 @@ export class ListagemContatosComponent implements OnInit {
     this.contatoService.listarContatos()
       .subscribe(dados => {
         this.contatos = dados;
-        console.log(dados);
+        this.carregado = !this.carregado;
       });
   }
 
   editar(contato: Contato) {
-    this.contatoService.editarContato(contato, contato.id)
-    .subscribe( dados => {
-      console.log(dados);
-    });
+    this.router.navigateByUrl(`clientes/detalhes/${contato.id}`);
+    // this.contatoService.editarContato(contato, contato.id)
+    // .subscribe( dados => {
+    //   console.log(dados);
+    // });
   }
 
   remover(id: number) {
-    this.contatoService.removerContato(id)
-    .subscribe(dados => {
-        console.log(dados);
-    });
+    if ( confirm(`Deseja remover o Contato (${ id })`) ) {
+      this.contatoService.removerContato(id)
+      .subscribe(dados => {
+          this.carregado = !this.carregado;
+          this.listar();
+      });
+    } else {
+      return;
+    }
   }
 
-  adicionar(contato: Contato) {
-    this.contatoService.adicionarContato(contato)
-    .subscribe(dados => {
-      console.log(dados);
-    });
+  adicionar() {
+    this.router.navigateByUrl(`clientes/adicionar`);
   }
 
 }
